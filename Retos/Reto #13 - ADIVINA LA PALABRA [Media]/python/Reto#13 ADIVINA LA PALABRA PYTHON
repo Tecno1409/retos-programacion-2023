@@ -1,0 +1,47 @@
+"""
+ * Crea un pequeño juego que consista en adivinar palabras en un número máximo de intentos:
+ * - El juego comienza proponiendo una palabra aleatoria incompleta
+ *   - Por ejemplo "m_ur_d_v", y el número de intentos que le quedan
+ * - El usuario puede introducir únicamente una letra o una palabra (de la misma longitud que
+ *   la palabra a adivinar)
+ *   - Si escribe una letra y acierta, se muestra esa letra en la palabra. Si falla, se resta
+ *     uno al número de intentos
+ *   - Si escribe una resolución y acierta, finaliza el juego, en caso contrario, se resta uno
+ *     al número de intentos
+ *   - Si el contador de intentos llega a 0, el jugador pierde
+ * - La palabra debe ocultar de forma aleatoria letras, y nunca puede comenzar ocultando más del 60%
+ * - Puedes utilizar las palabras que quieras y el número de intentos que consideres
+"""
+import random
+
+RandomWord = [
+    "comida",
+    "futbol",
+    "basket",
+    "baseball",
+    "deporte",
+    "programacion",
+    "python",
+    "Messi",
+    "Inglaterra",
+    "Venezuela",
+]
+
+CountAttemps = 3 
+OrderWord= random.choice(RandomWord)
+UnOrderWord = random.sample(OrderWord,len(OrderWord))
+UWord = "".join(UnOrderWord)
+print("Recuerda que solo tienes 3 intentos.")
+
+for i in range(CountAttemps):
+ Attempts = input(f"Adivine cual es esta palabra({UWord}):")
+ 
+ if(Attempts != OrderWord.lower() or Attempts != OrderWord.capitalize()):
+    print(f"Van {i+1} intento/s")
+    
+ if(Attempts == OrderWord.lower() or Attempts == OrderWord.capitalize()):
+     print(f"Felicidades, adivinaste la palabra, la cual era {OrderWord}")
+     break
+ 
+ if(i == CountAttemps):
+  print(f"Se acabaron los intentos y perdiste, la palabra era {OrderWord}.")
